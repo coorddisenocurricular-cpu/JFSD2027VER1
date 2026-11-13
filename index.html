@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#211137">
+  <meta name="description" content="Explora la oferta e inscríbete en la Jornada de Formación y Superación Docente UVP.">
+  <title>Jornada de Formación Docente | UVP</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #211b2c;
+      --muted: #716b79;
+      --paper: #fffdfb;
+      --surface: #ffffff;
+      --line: #e9e3eb;
+      --plum: #4a176d;
+      --purple: #7425a5;
+      --magenta: #c41d65;
+      --orange: #f27b35;
+      --gold: #f4c649;
+      --mint: #d7eee4;
+      --shadow: 0 18px 48px rgba(48, 23, 62, .10);
+      --radius: 22px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .skip-link { position: fixed; z-index: 20; top: 8px; left: 8px; padding: 12px 16px; background: #fff; transform: translateY(-160%); }
+    .skip-link:focus { transform: translateY(0); }
+
+    .topbar { position: sticky; z-index: 10; top: 0; border-bottom: 1px solid rgba(255,255,255,.12); background: rgba(32, 16, 48, .96); color: white; backdrop-filter: blur(14px); }
+    .nav { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; color: white; text-decoration: none; }
+    .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px 13px 13px 5px; background: linear-gradient(140deg, #f8c335 4%, #ef623b 45%, #c51b68 72%, #6f21a2 100%); font-size: 23px; font-weight: 850; letter-spacing: -2px; }
+    .brand-copy { display: grid; gap: 1px; }
+    .brand-copy strong { font-size: 17px; letter-spacing: .03em; }
+    .brand-copy span { color: #d8c9e2; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 25px; }
+    .nav-links a { color: #eee5f2; font-size: 13px; font-weight: 650; text-decoration: none; }
+    .nav-links a:hover { color: #ffd05c; }
+    .nav-cta { padding: 12px 17px; border-radius: 999px; background: linear-gradient(110deg, var(--magenta), var(--orange)); color: white !important; }
+    .menu-toggle { display: none; border: 1px solid #705781; border-radius: 10px; padding: 9px 12px; background: transparent; color: white; }
+
+    .hero { position: relative; overflow: hidden; padding: 78px 0 68px; color: white; background: radial-gradient(ellipse at 86% 12%, rgba(245,193,66,.22), transparent 28%), radial-gradient(ellipse at 2% 92%, rgba(196,29,101,.44), transparent 32%), linear-gradient(117deg, #241237 0%, #48205f 54%, #6d2385 100%); }
+    .hero::before, .hero::after { position: absolute; content: ""; pointer-events: none; }
+    .hero::before { width: 450px; height: 450px; right: -155px; bottom: -270px; border: 1px solid rgba(255,255,255,.14); border-radius: 50%; box-shadow: 0 0 0 46px rgba(255,255,255,.035), 0 0 0 92px rgba(255,255,255,.025); }
+    .hero::after { width: 240px; height: 240px; top: -150px; left: 48%; border-radius: 48px; background: linear-gradient(135deg, rgba(242,123,53,.28), rgba(196,29,101,.05)); transform: rotate(38deg); }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .75fr); align-items: center; gap: 54px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #f9d56d; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { width: 25px; height: 2px; content: ""; background: currentColor; }
+    h1 { max-width: 700px; margin: 22px 0 17px; font-size: clamp(42px, 6vw, 72px); line-height: .99; letter-spacing: -.055em; }
+    .hero-copy { max-width: 600px; margin: 0; color: #eadff0; font-size: clamp(16px, 2vw, 19px); line-height: 1.65; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 9px; border: 0; border-radius: 999px; padding: 13px 20px; font-weight: 750; text-decoration: none; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: linear-gradient(105deg, #f4c649, #f28a37); color: #281337; box-shadow: 0 10px 24px rgba(242,123,53,.25); }
+    .button-ghost { border: 1px solid rgba(255,255,255,.42); background: rgba(255,255,255,.06); color: white; }
+    .hero-note { display: flex; align-items: center; gap: 10px; margin-top: 24px; color: #d4c2dd; font-size: 13px; }
+    .hero-note b { color: white; }
+    .hero-card { position: relative; border: 1px solid rgba(255,255,255,.19); border-radius: 28px; padding: 25px; background: rgba(255,255,255,.09); box-shadow: 0 24px 70px rgba(10,4,18,.24); backdrop-filter: blur(12px); }
+    .hero-card::before { position: absolute; top: -17px; right: 24px; width: 52px; height: 52px; border-radius: 18px; content: ""; background: linear-gradient(140deg, var(--gold), var(--orange)); transform: rotate(12deg); }
+    .hero-card-label { color: #f3d9f1; font-size: 12px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+    .hero-card h2 { margin: 13px 0 8px; font-size: 25px; letter-spacing: -.03em; }
+    .hero-card > p { margin: 0; color: #e5d7eb; font-size: 14px; line-height: 1.6; }
+    .hero-date { display: flex; align-items: center; gap: 14px; margin-top: 23px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.17); }
+    .date-icon { width: 44px; height: 44px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 14px; background: rgba(255,255,255,.13); color: #ffd568; font-size: 21px; }
+    .hero-date strong, .hero-date span { display: block; }
+    .hero-date strong { font-size: 14px; }
+    .hero-date span { margin-top: 4px; color: #d7c6de; font-size: 12px; }
+
+    .metrics { position: relative; z-index: 2; margin-top: -28px; }
+    .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: white; box-shadow: var(--shadow); }
+    .metric { padding: 22px 24px; }
+    .metric + .metric { border-left: 1px solid var(--line); }
+    .metric strong { display: block; color: var(--plum); font-size: 25px; letter-spacing: -.04em; }
+    .metric span { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; }
+    .metric small { display: block; margin-top: 6px; color: #897f8e; font-size: 10px; }
+    .connection-state { display: inline-flex; align-items: center; gap: 6px; color: #5e5965 !important; }
+    .connection-state::before { width: 7px; height: 7px; border-radius: 50%; content: ""; background: #cf9c2c; }
+    .connection-state.is-live::before { background: #2a9d68; }
+
+    section { padding: 86px 0; }
+    .section-heading { max-width: 720px; margin-bottom: 32px; }
+    .section-kicker { color: var(--magenta); font-size: 11px; font-weight: 850; letter-spacing: .16em; text-transform: uppercase; }
+    h2.section-title { margin: 10px 0 10px; color: var(--ink); font-size: clamp(30px, 4vw, 43px); line-height: 1.08; letter-spacing: -.045em; }
+    .section-intro { max-width: 680px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
+    .section-soft { background: #f7f3f8; }
+
+    .schedule-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 13px; margin: 0 0 22px; }
+    .field { display: grid; gap: 7px; }
+    .field label, .field-label { color: #4a3e52; font-size: 12px; font-weight: 750; }
+    .field input, .field select, .field textarea, .control-select, .search-input { width: 100%; min-height: 46px; border: 1px solid #dcd3e2; border-radius: 12px; padding: 10px 12px; outline: none; background: white; color: var(--ink); }
+    .field input:focus, .field select:focus, .field textarea:focus, .control-select:focus, .search-input:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(116,37,165,.13); }
+    .schedule-controls .field { min-width: 220px; }
+    .schedule-count { margin-left: auto; color: var(--muted); font-size: 13px; }
+    .schedule-day { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: white; box-shadow: 0 10px 30px rgba(48,23,62,.05); }
+    .schedule-day-head { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 18px 21px; border-bottom: 1px solid var(--line); background: #fcf9fd; }
+    .schedule-day-head strong { font-size: 16px; }
+    .schedule-day-head span { color: var(--muted); font-size: 12px; }
+    .schedule-block { display: grid; grid-template-columns: 150px 1fr; gap: 17px; padding: 19px 21px; }
+    .schedule-block + .schedule-block { border-top: 1px solid var(--line); }
+    .block-label { color: var(--plum); font-size: 12px; font-weight: 850; }
+    .block-label span { display: block; margin-top: 5px; color: var(--muted); font-weight: 500; }
+    .session-list { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+    .session-item { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; border: 1px solid #eee8f0; border-radius: 13px; padding: 12px 13px; }
+    .session-item strong { display: block; font-size: 13px; line-height: 1.45; }
+    .session-item span { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; line-height: 1.45; }
+    .session-capacity { flex: 0 0 auto; color: #827588 !important; text-align: right; }
+    .event-callout { margin: 15px 20px 20px; border-radius: 13px; padding: 13px 15px; background: #fff5e3; color: #633d15; font-size: 13px; }
+
+    .catalog-controls { display: grid; grid-template-columns: minmax(220px, 1fr) 220px 180px; gap: 11px; margin-bottom: 20px; }
+    .catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .course-card { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--line); border-radius: 18px; padding: 18px; background: white; box-shadow: 0 9px 26px rgba(48,23,62,.045); }
+    .course-topline { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .course-code { color: #82738a; font-size: 10px; font-weight: 800; letter-spacing: .1em; }
+    .pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 6px 9px; background: #f5eafa; color: #622381; font-size: 10px; font-weight: 800; }
+    .pill.orange { background: #fff1e2; color: #934a14; }
+    .pill.gray { background: #f0eef2; color: #625a69; }
+    .course-card h3 { margin: 14px 0 8px; font-size: 17px; line-height: 1.32; letter-spacing: -.025em; }
+    .course-axis { min-height: 16px; color: var(--muted); font-size: 11px; }
+    .course-pitch { margin: 13px 0; color: #625d68; font-size: 12px; line-height: 1.6; }
+    .course-meta { display: flex; flex-wrap: wrap; gap: 7px; margin: auto 0 13px; }
+    .session-options { display: grid; gap: 7px; }
+    .session-option { display: flex; align-items: flex-start; gap: 8px; border: 1px solid #eee7f0; border-radius: 10px; padding: 9px; cursor: pointer; }
+    .session-option input { margin-top: 2px; accent-color: var(--purple); }
+    .session-option span { min-width: 0; color: #504858; font-size: 11px; line-height: 1.4; }
+    .session-option small { display: block; margin-top: 3px; color: #887f8d; font-size: 10px; }
+    .course-more { margin-top: 13px; border-top: 1px solid #f0ebf2; padding-top: 11px; color: #5c5361; font-size: 11px; line-height: 1.55; }
+    .course-more summary { color: var(--plum); font-weight: 750; cursor: pointer; }
+    .course-more p { margin: 9px 0 0; }
+    .course-more ul { margin: 7px 0 0; padding-left: 17px; }
+    .course-more li + li { margin-top: 4px; }
+    .empty-note { grid-column: 1 / -1; border: 1px dashed #cbbbd4; border-radius: 14px; padding: 22px; color: var(--muted); text-align: center; }
+    .catalog-footer { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 26px; }
+    .button-outline { border: 1px solid #d4c5dc; background: white; color: var(--plum); }
+    .catalog-count { color: var(--muted); font-size: 12px; }
+    .selection-strip { position: sticky; z-index: 5; bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 15px; width: min(650px, calc(100% - 28px)); margin: 25px auto 0; border: 1px solid #e5d9eb; border-radius: 16px; padding: 12px 14px; background: rgba(255,255,255,.96); box-shadow: 0 12px 35px rgba(43,17,59,.18); backdrop-filter: blur(12px); }
+    .selection-strip strong { display: block; font-size: 13px; }
+    .selection-strip span { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }
+    .selection-strip .button { min-height: 40px; padding: 10px 15px; font-size: 12px; }
+
+    .registration-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); align-items: start; gap: 25px; }
+    .form-card, .info-card { border: 1px solid var(--line); border-radius: 20px; padding: 24px; background: white; box-shadow: 0 12px 32px rgba(48,23,62,.06); }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 15px; }
+    .field-full { grid-column: 1 / -1; }
+    .field select[multiple] { min-height: 125px; }
+    .field-hint { color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .selected-list { display: grid; gap: 8px; margin-top: 10px; }
+    .selected-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; border: 1px solid #eee7f0; border-radius: 11px; padding: 10px; }
+    .selected-row strong { display: block; font-size: 11px; line-height: 1.4; }
+    .selected-row span { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; }
+    .remove-selection { flex: 0 0 auto; border: 0; background: none; color: #a42854; font-size: 11px; font-weight: 750; cursor: pointer; }
+    .consent { display: flex; align-items: flex-start; gap: 10px; margin-top: 18px; color: #625a68; font-size: 12px; line-height: 1.55; }
+    .consent input { margin-top: 2px; accent-color: var(--purple); }
+    .form-submit { width: 100%; margin-top: 18px; }
+    .form-status { min-height: 24px; margin: 12px 0 0; font-size: 12px; line-height: 1.5; }
+    .form-status.success { color: #147247; }
+    .form-status.error { color: #a52046; }
+    .form-status.pending { color: #68447d; }
+    .hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .info-card { position: sticky; top: 95px; background: #2c163c; color: white; }
+    .info-card h3 { margin: 0 0 14px; font-size: 19px; }
+    .info-card p, .info-card li { color: #e0d2e7; font-size: 12px; line-height: 1.65; }
+    .info-card ul { margin: 11px 0 0; padding-left: 18px; }
+    .info-card li + li { margin-top: 7px; }
+    .info-card a { color: #ffd466; }
+    .privacy-note { margin-top: 20px; border-top: 1px solid rgba(255,255,255,.18); padding-top: 16px; color: #cdbbd6 !important; font-size: 10px !important; }
+
+    .faq-list { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 11px; }
+    .faq-list details { border: 1px solid var(--line); border-radius: 14px; padding: 16px 17px; background: white; }
+    .faq-list summary { position: relative; padding-right: 22px; color: #362741; font-size: 13px; font-weight: 750; line-height: 1.5; cursor: pointer; list-style: none; }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after { position: absolute; right: 0; content: "+"; color: var(--magenta); font-size: 18px; line-height: 1; }
+    .faq-list details[open] summary::after { content: "−"; }
+    .faq-list details p { margin: 12px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .contact-band { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 32px; border-radius: 18px; padding: 22px 24px; background: linear-gradient(110deg, #f9edf5, #fff5e4); }
+    .contact-band strong { display: block; font-size: 15px; }
+    .contact-band span { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; }
+    .contact-band a { color: var(--plum); font-size: 12px; font-weight: 800; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    footer { padding: 27px 0; background: #211137; color: #d9c9e2; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .footer-inner p { margin: 0; font-size: 11px; line-height: 1.6; }
+    .footer-inner a { color: white; }
+    .toast { position: fixed; z-index: 30; right: 18px; bottom: 18px; max-width: min(420px, calc(100% - 36px)); border-radius: 13px; padding: 14px 17px; background: #241434; color: white; box-shadow: var(--shadow); font-size: 13px; line-height: 1.5; }
+    [hidden] { display: none !important; }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: minmax(0,1fr) minmax(260px,.78fr); gap: 26px; }
+      .catalog-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .registration-layout { grid-template-columns: minmax(0,1fr) 280px; gap: 15px; }
+      .metric { padding-inline: 16px; }
+    }
+    @media (max-width: 680px) {
+      .wrap { width: min(100% - 28px, 560px); }
+      .nav { min-height: 64px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links { position: absolute; top: 64px; right: 14px; left: 14px; display: none; align-items: stretch; gap: 0; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; padding: 8px; background: #26153a; box-shadow: var(--shadow); }
+      .nav-links.is-open { display: grid; }
+      .nav-links a { padding: 12px; }
+      .nav-cta { margin-top: 4px; text-align: center; }
+      .hero { padding: 55px 0 54px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero-card { max-width: 470px; }
+      .metrics { margin-top: -19px; }
+      .metric-grid { grid-template-columns: repeat(2,1fr); }
+      .metric:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
+      .metric:nth-child(4) { border-top: 1px solid var(--line); }
+      section { padding: 64px 0; }
+      .schedule-block { grid-template-columns: 1fr; gap: 10px; }
+      .session-list { grid-template-columns: 1fr; }
+      .catalog-controls { grid-template-columns: 1fr 1fr; }
+      .catalog-controls .search-input { grid-column: 1 / -1; }
+      .catalog-grid { grid-template-columns: 1fr; }
+      .registration-layout { grid-template-columns: 1fr; }
+      .info-card { position: static; grid-row: 1; }
+      .faq-list { grid-template-columns: 1fr; }
+      .contact-band, .footer-inner { align-items: flex-start; flex-direction: column; }
+      .schedule-count { width: 100%; margin-left: 0; }
+    }
+    @media (max-width: 420px) {
+      .form-card, .info-card { padding: 18px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field-full { grid-column: auto; }
+      .catalog-controls { grid-template-columns: 1fr; }
+      .catalog-controls .search-input { grid-column: auto; }
+      .schedule-day-head { align-items: flex-start; flex-direction: column; }
+      .metric { padding: 16px 13px; }
+      .metric strong { font-size: 22px; }
+      .selection-strip { align-items: flex-start; }
+      .selection-strip .button { padding-inline: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#inicio" aria-label="UVP Jornada de Formación Docente, inicio">
+        <span class="brand-mark" aria-hidden="true">U</span>
+        <span class="brand-copy"><strong>UVP</strong><span>Formación docente</span></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks">Menú</button>
+      <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+        <a href="#agenda">Agenda</a>
+        <a href="#oferta">Oferta académica</a>
+        <a href="#preguntas">Preguntas frecuentes</a>
+        <a class="nav-cta" href="#inscripcion">Inscribirme</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" id="inicio">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Universidad del Valle de Puebla</span>
+          <h1>Enseñar también es aprender.</h1>
+          <p class="hero-copy">Una jornada para compartir experiencias, renovar herramientas y fortalecer lo que hacemos cada día en el aula.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#oferta">Explorar cursos <span aria-hidden="true">→</span></a>
+            <a class="button button-ghost" href="#inscripcion">Elegir mis sesiones</a>
+          </div>
+          <p class="hero-note"><b>Presencial y virtual</b><span aria-hidden="true">·</span> cursos y talleres gratuitos para la comunidad docente UVP</p>
+        </div>
+        <aside class="hero-card" aria-label="Fechas y sede">
+          <span class="hero-card-label">Jornada de Formación y Superación Docente</span>
+          <h2>Ideas que transforman la práctica.</h2>
+          <p>Encuentra una ruta de aprendizaje que combine tus intereses, tus horarios y las necesidades de tu comunidad.</p>
+          <div class="hero-date">
+            <span class="date-icon" aria-hidden="true">✦</span>
+            <span><strong id="eventDates">21 de diciembre de 2026 — 15 de enero de 2027</strong><span>Complejo Teocalli · Universidad del Valle de Puebla</span></span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <div class="wrap metrics" aria-label="Indicadores de la jornada">
+      <div class="metric-grid">
+        <div class="metric"><strong id="registeredCount" aria-live="polite">—</strong><span>Docentes inscritos</span><small class="connection-state" id="connectionState">Conectando con el registro</small></div>
+        <div class="metric"><strong id="plannedSeats">2,570</strong><span>Cupos proyectados</span><small>Planeación del Excel fuente</small></div>
+        <div class="metric"><strong id="courseCount">—</strong><span>Propuestas formativas</span><small>Oferta tomada del archivo de trabajo</small></div>
+        <div class="metric"><strong id="sessionCount">—</strong><span>Opciones de inscripción</span><small id="sessionCaption">Sesiones y cursos autogestivos</small></div>
+      </div>
+    </div>
+
+    <section id="agenda">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="section-kicker">Planea tu recorrido</span>
+          <h2 class="section-title">Agenda de la jornada</h2>
+          <p class="section-intro">Consulta los bloques, la modalidad y el aula de cada sesión. La agenda refleja el calendario compartido; las propuestas sin horario aparecen en la oferta como pendientes de calendarización.</p>
+        </div>
+        <div class="schedule-controls">
+          <div class="field"><label for="scheduleDate">Selecciona un día</label><select id="scheduleDate" class="control-select"></select></div>
+          <span class="schedule-count" id="scheduleCount" aria-live="polite"></span>
+        </div>
+        <div id="scheduleContent" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="oferta">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="section-kicker">Descubre lo que te inspira</span>
+          <h2 class="section-title">Oferta académica</h2>
+          <p class="section-intro">Filtra por tema, modalidad o tipo de actividad. Agrega al menos tres sesiones compatibles a tu plan; puedes combinarlas entre modalidad presencial, virtual y autogestiva.</p>
+        </div>
+        <div class="catalog-controls">
+          <input class="search-input" id="courseSearch" type="search" placeholder="Buscar por curso, eje o facilitador" aria-label="Buscar cursos">
+          <select class="control-select" id="axisFilter" aria-label="Filtrar por eje"><option value="">Todos los ejes</option></select>
+          <select class="control-select" id="modeFilter" aria-label="Filtrar por modalidad"><option value="">Todas las modalidades</option><option>Presencial</option><option>Virtual</option><option>Online (plataforma)</option></select>
+        </div>
+        <div class="catalog-grid" id="courseGrid" aria-live="polite"></div>
+        <div class="catalog-footer">
+          <span class="catalog-count" id="catalogCount"></span>
+          <button class="button button-outline" id="loadMore" type="button">Ver más cursos</button>
+        </div>
+        <div class="selection-strip" id="selectionStrip" hidden>
+          <div><strong id="selectionCount">0 sesiones seleccionadas</strong><span>El requisito mínimo es de tres cursos.</span></div>
+          <a class="button button-primary" href="#inscripcion">Continuar <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="inscripcion">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="section-kicker">Tu siguiente paso</span>
+          <h2 class="section-title">Inscripción</h2>
+          <p class="section-intro">Completa tus datos y confirma las sesiones elegidas. Recibirás un correo con el resumen cuando el registro esté conectado.</p>
+        </div>
+        <div class="registration-layout">
+          <div class="form-card">
+            <form id="registrationForm" novalidate>
+              <div class="form-grid">
+                <div class="field field-full"><label for="fullName">Nombre completo <span aria-hidden="true">*</span></label><input id="fullName" name="fullName" autocomplete="name" maxlength="120" required placeholder="Como aparecerá en tu constancia"></div>
+                <div class="field"><label for="email">Correo electrónico <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="160" required placeholder="nombre@uvp.mx"></div>
+                <div class="field"><label for="teacherKey">Clave docente o administrativa <span aria-hidden="true">*</span></label><input id="teacherKey" name="teacherKey" maxlength="50" required></div>
+                <div class="field"><label for="campus">Plantel <span aria-hidden="true">*</span></label><select id="campus" name="campus" required></select></div>
+                <div class="field"><label for="division">División o área <span aria-hidden="true">*</span></label><select id="division" name="division" required></select></div>
+                <div class="field"><label for="personType">¿Cómo te identificas? <span aria-hidden="true">*</span></label><select id="personType" name="personType" required></select></div>
+                <div class="field" id="academicLevelField"><label for="academicLevel">Nivel en el que impartes clases</label><select id="academicLevel" name="academicLevel"></select></div>
+                <div class="field field-full" id="postgraduateLevelField" hidden><label for="postgraduateLevel">Nivel de posgrado</label><select id="postgraduateLevel" name="postgraduateLevel"></select></div>
+                <div class="field field-full" id="programField"><label for="programs">Programa(s) <span class="field-hint">(puedes seleccionar más de uno)</span></label><select id="programs" name="programs" multiple size="5"></select><span class="field-hint">Mantén presionada la tecla Ctrl (Windows) o Cmd (Mac) para elegir varias opciones.</span></div>
+                <div class="field field-full"><label for="experience">Antigüedad en UVP <span aria-hidden="true">*</span></label><select id="experience" name="experience" required></select></div>
+                <div class="field field-full"><span class="field-label">Sesiones elegidas <span aria-hidden="true">*</span></span><div class="selected-list" id="selectedList"></div><span class="field-hint">Necesitas al menos tres sesiones. No es posible elegir dos actividades que coincidan en fecha y horario.</span></div>
+              </div>
+              <label class="consent"><input id="privacyConsent" name="privacyConsent" type="checkbox" required><span>Autorizo el uso de estos datos para gestionar mi inscripción, comunicar cambios y enviar la confirmación. La información no se publicará en la página.</span></label>
+              <div class="hp-field" aria-hidden="true"><label for="website">No llenar</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+              <button class="button button-primary form-submit" type="submit" id="submitButton">Confirmar inscripción <span aria-hidden="true">→</span></button>
+              <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+          <aside class="info-card">
+            <h3>Antes de confirmar</h3>
+            <ul>
+              <li>Selecciona un mínimo de tres cursos durante la jornada.</li>
+              <li>Puedes mezclar sesiones presenciales, virtuales y autogestivas.</li>
+              <li>Las actividades presenciales se realizan en el Complejo Teocalli.</li>
+              <li>Revisa los requisitos de acreditación y permanece durante toda la sesión.</li>
+              <li>Para liberar un lugar o pedir ayuda, escribe a <a href="mailto:coord.formaciondocente@uvp.mx">coord.formaciondocente@uvp.mx</a>.</li>
+            </ul>
+            <p class="privacy-note">El contador es agregado. La página pública nunca recibe nombres, correos ni claves docentes; esos datos solo se guardan en la hoja privada configurada por la organización.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="preguntas">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="section-kicker">Te acompañamos</span>
+          <h2 class="section-title">Preguntas frecuentes</h2>
+          <p class="section-intro">Información tomada de las indicaciones compartidas para la jornada.</p>
+        </div>
+        <div class="faq-list" id="faqList"></div>
+        <div class="contact-band">
+          <div><strong>¿Necesitas orientación?</strong><span>Centro de Formación y Superación Docente · Extensión 777</span></div>
+          <a href="mailto:coord.formaciondocente@uvp.mx">Escribir a coordinación →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <p><strong>UVP · Universidad del Valle de Puebla</strong><br>Jornada de Formación y Superación Docente · Diciembre 2026 — enero 2027</p>
+      <p>Información: <a href="mailto:coord.formaciondocente@uvp.mx">coord.formaciondocente@uvp.mx</a></p>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <iframe id="apiFrame" name="apps-script-response" title="Respuesta del registro" hidden></iframe>
+  <form id="apiForm" target="apps-script-response" method="post" hidden></form>
+
+  <script>
+    "use strict";
+    const API_URL = "https://script.google.com/macros/s/AKfycbzFXmVTVSXatdc8LSYNcRFRbdaXgSuscjBPsGmR8z7qgVCmV6q8p9ti2CODYgyfpNVU/exec";
+    const MIN_COURSES = 3;
+    const state = { catalog: null, selected: new Set(), stats: null, visibleCourses: 9, filteredCourses: [] };
+    const $ = (selector) => document.querySelector(selector);
+    const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+    const sessionById = () => new Map(state.catalog.sessions.map((session) => [session.id, session]));
+    const courseById = () => new Map(state.catalog.courses.map((course) => [course.id, course]));
+
+    function showToast(message) {
+      const toast = $("#toast");
+      toast.textContent = message;
+      toast.hidden = false;
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => { toast.hidden = true; }, 5200);
+    }
+
+    function setOptions(select, values, placeholder) {
+      select.innerHTML = `<option value="">${escapeHtml(placeholder)}</option>` + values.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join("");
+    }
+
+    function formatDate(isoDate, options = { day: "numeric", month: "long", year: "numeric" }) {
+      if (!isoDate) return "A tu ritmo";
+      return new Intl.DateTimeFormat("es-MX", options).format(new Date(`${isoDate}T12:00:00`));
+    }
+
+    function formatShortDate(isoDate) {
+      return formatDate(isoDate, { weekday: "short", day: "numeric", month: "short" });
+    }
+
+    function initializePage() {
+      const catalog = state.catalog;
+      const event = catalog.event;
+      $("#plannedSeats").textContent = Number(event.totalSeats).toLocaleString("es-MX");
+      $("#courseCount").textContent = catalog.courses.length.toLocaleString("es-MX");
+      const timedSessions = catalog.sessions.filter((session) => session.block > 0).length;
+      const selfPacedSessions = catalog.sessions.length - timedSessions;
+      $("#sessionCount").textContent = catalog.sessions.length.toLocaleString("es-MX");
+      $("#sessionCaption").textContent = `${timedSessions} con horario · ${selfPacedSessions} autogestivos`;
+      $("#eventDates").textContent = `${formatDate(event.startDate)} — ${formatDate(event.endDate)}`;
+      setOptions($("#campus"), catalog.options.campuses, "Selecciona un plantel");
+      setOptions($("#division"), catalog.options.divisions, "Selecciona una división o área");
+      setOptions($("#personType"), catalog.options.personTypes, "Selecciona una opción");
+      setOptions($("#academicLevel"), catalog.options.academicLevels, "Selecciona un nivel");
+      setOptions($("#postgraduateLevel"), catalog.options.postgraduateLevels, "Selecciona un nivel de posgrado");
+      setOptions($("#experience"), catalog.options.experience, "Selecciona tu antigüedad");
+      const axes = [...new Set(catalog.courses.map((course) => course.axis).filter(Boolean))].sort((a, b) => a.localeCompare(b, "es"));
+      setOptions($("#axisFilter"), axes, "Todos los ejes");
+      const dates = [...new Set(catalog.sessions.filter((session) => session.date).map((session) => session.date))].sort();
+      $("#scheduleDate").innerHTML = dates.map((date) => `<option value="${date}">${escapeHtml(formatShortDate(date))}</option>`).join("");
+      renderAgenda();
+      renderCourses();
+      renderFaqs();
+      updateSelection();
+      updatePrograms();
+      loadLiveStats();
+    }
+
+    function renderAgenda() {
+      const selectedDate = $("#scheduleDate").value;
+      const sessions = state.catalog.sessions.filter((session) => session.date === selectedDate);
+      const dayName = sessions[0]?.day || formatShortDate(selectedDate);
+      const dateLabel = formatDate(selectedDate);
+      const special = state.catalog.specialEvents.filter((item) => item.date === selectedDate);
+      const blocks = [
+        { id: 1, title: "Bloque 1", time: "09:00–12:00" },
+        { id: 2, title: "Bloque 2 · modalidad virtual", time: "12:00–14:00" },
+        { id: 3, title: "Bloque 3", time: "15:00–18:00" }
+      ];
+      const content = blocks.map((block) => {
+        const items = sessions.filter((session) => session.block === block.id);
+        if (!items.length) return "";
+        return `<div class="schedule-block"><div class="block-label">${block.title}<span>${block.time}</span></div><div class="session-list">${items.map((session) => {
+          const used = state.stats?.bySession?.[session.id]?.inscritos;
+          const room = session.room || (session.modality === "Virtual" ? "En línea" : "Sede por confirmar");
+          return `<article class="session-item"><div><strong>${escapeHtml(session.title)}</strong><span>${escapeHtml(session.facilitator || "Facilitador por confirmar")} · ${escapeHtml(session.modality)} · ${escapeHtml(room)}</span></div><span class="session-capacity">${used === undefined ? `${session.capacity} cupos` : `${Math.max(0, session.capacity - used)} lugares`}</span></article>`;
+        }).join("")}</div></div>`;
+      }).join("");
+      const eventMarkup = special.map((item) => `<div class="event-callout"><strong>${escapeHtml(item.title)}</strong> · ${escapeHtml(item.time)} · ${escapeHtml(item.room || "Sede por confirmar")}${item.facilitator ? ` · ${escapeHtml(item.facilitator)}` : ""}</div>`).join("");
+      $("#scheduleContent").innerHTML = `<div class="schedule-day"><div class="schedule-day-head"><strong>${escapeHtml(dayName)} · ${escapeHtml(dateLabel)}</strong><span>${sessions.length} sesiones programadas</span></div>${content || `<div class="empty-note">No hay cursos calendarizados para esta fecha.</div>`}${eventMarkup}</div>`;
+      $("#scheduleCount").textContent = `${sessions.length} sesiones · ${special.length ? `${special.length} actividad institucional` : "Horario según calendario compartido"}`;
+    }
+
+    function sessionLabel(session) {
+      if (!session.date) return `Autogestivo · Plataforma UVP Online`;
+      const room = session.room || (session.modality === "Virtual" ? "En línea" : "Sede por confirmar");
+      return `${formatShortDate(session.date)} · ${session.time} · ${room}`;
+    }
+
+    function renderCourses() {
+      const search = $("#courseSearch").value.trim().toLocaleLowerCase("es-MX");
+      const axis = $("#axisFilter").value;
+      const mode = $("#modeFilter").value;
+      const filtered = state.catalog.courses.filter((course) => {
+        const matchesAxis = !axis || course.axis === axis;
+        const matchesMode = !mode || course.modality === mode;
+        const text = [course.id, course.title, course.axis, course.facilitator, course.pitch].join(" ").toLocaleLowerCase("es-MX");
+        return matchesAxis && matchesMode && (!search || text.includes(search));
+      });
+      state.filteredCourses = filtered;
+      const visible = filtered.slice(0, state.visibleCourses);
+      const sessions = sessionById();
+      const cards = visible.map((course) => {
+        const type = course.type || "Curso";
+        const modeClass = course.modality === "Presencial" ? "orange" : "";
+        const pitch = course.pitch || course.objective || "Conoce esta propuesta formativa de la jornada.";
+        const sessionOptions = course.sessions.length ? course.sessions.map((id) => {
+          const session = sessions.get(id);
+          if (!session) return "";
+          const used = state.stats?.bySession?.[id]?.inscritos || 0;
+          const remaining = Math.max(0, session.capacity - used);
+          const full = remaining === 0;
+          const checked = state.selected.has(id);
+          return `<label class="session-option"><input type="checkbox" data-session="${escapeHtml(id)}" ${checked ? "checked" : ""} ${full && !checked ? "disabled" : ""}><span>${escapeHtml(sessionLabel(session))}<small>${full ? "Cupo completo" : `${remaining} lugares disponibles`} · ${escapeHtml(session.modality)}</small></span></label>`;
+        }).join("") : `<span class="field-hint">Horario o disponibilidad por confirmar.</span>`;
+        const content = course.content ? `<ul>${course.content.split(/\n+/).filter(Boolean).map((item) => `<li>${escapeHtml(item.replace(/^[*•-]\s*/, ""))}</li>`).join("")}</ul>` : "";
+        return `<article class="course-card">
+          <div class="course-topline"><span class="course-code">${escapeHtml(course.id)}</span><span class="pill ${modeClass}">${escapeHtml(course.modality || "Modalidad por confirmar")}</span></div>
+          <h3>${escapeHtml(course.title)}</h3><span class="course-axis">${escapeHtml(course.axis)}</span>
+          <p class="course-pitch">${escapeHtml(pitch)}</p>
+          <div class="course-meta"><span class="pill gray">${escapeHtml(type)}</span>${course.duration ? `<span class="pill gray">${escapeHtml(course.duration)} h</span>` : ""}</div>
+          ${course.facilitator ? `<p class="field-hint"><strong>Facilita:</strong> ${escapeHtml(course.facilitator)}</p>` : ""}
+          <div class="session-options">${sessionOptions}</div>
+          <details class="course-more"><summary>Objetivo y acreditación</summary>${course.objective ? `<p><strong>Objetivo:</strong> ${escapeHtml(course.objective)}</p>` : ""}${content}${course.accreditation ? `<p><strong>Acreditación:</strong> ${escapeHtml(course.accreditation)}</p>` : ""}</details>
+        </article>`;
+      });
+      $("#courseGrid").innerHTML = cards.length ? cards.join("") : `<div class="empty-note">No encontramos cursos con esos filtros. Prueba con otra búsqueda.</div>`;
+      $("#catalogCount").textContent = `Mostrando ${visible.length} de ${filtered.length} propuestas`;
+      $("#loadMore").hidden = visible.length >= filtered.length;
+    }
+
+    function updatePrograms() {
+      const level = $("#academicLevel").value.toLocaleLowerCase("es-MX");
+      const options = state.catalog.options;
+      const postgraduate = level.includes("posgrado");
+      const postgraduateField = $("#postgraduateLevelField");
+      const postgraduateSelect = $("#postgraduateLevel");
+      const postgraduateChoice = postgraduateSelect.value.toLocaleLowerCase("es-MX");
+      const list = level.includes("licenciatura") ? options.undergraduatePrograms :
+        postgraduateChoice.includes("las dos") || (postgraduateChoice.includes("maestr") && postgraduateChoice.includes("doctorado")) ? options.postgraduateOptions :
+        postgraduateChoice.includes("maestr") ? options.masters :
+        postgraduateChoice.includes("doctorado") ? options.doctorates : [];
+      const programField = $("#programField");
+      const academicField = $("#academicLevelField");
+      const isTeaching = $("#personType").value.toLocaleLowerCase("es-MX").includes("docente");
+      academicField.hidden = !isTeaching;
+      postgraduateField.hidden = !isTeaching || !postgraduate;
+      postgraduateSelect.required = isTeaching && postgraduate;
+      programField.hidden = !isTeaching || !list.length;
+      const select = $("#programs");
+      const current = new Set([...select.selectedOptions].map((option) => option.value));
+      select.innerHTML = list.map((value) => `<option value="${escapeHtml(value)}" ${current.has(value) ? "selected" : ""}>${escapeHtml(value)}</option>`).join("");
+      select.required = isTeaching && list.length > 0;
+      $("#academicLevel").required = isTeaching;
+      if (!isTeaching) {
+        $("#academicLevel").value = "";
+        postgraduateSelect.value = "";
+        select.selectedIndex = -1;
+      } else if (!postgraduate) {
+        postgraduateSelect.value = "";
+      }
+    }
+
+    function updateSelection() {
+      const sessions = sessionById();
+      const courses = courseById();
+      const ids = [...state.selected];
+      $("#selectionCount").textContent = `${ids.length} ${ids.length === 1 ? "sesión" : "sesiones"} seleccionada${ids.length === 1 ? "" : "s"}`;
+      $("#selectionStrip").hidden = ids.length === 0;
+      $("#selectedList").innerHTML = ids.length ? ids.map((id) => {
+        const session = sessions.get(id);
+        const course = courses.get(session?.courseId);
+        if (!session) return "";
+        return `<div class="selected-row"><div><strong>${escapeHtml(session.title)}</strong><span>${escapeHtml(course?.id || "")} · ${escapeHtml(sessionLabel(session))}</span></div><button class="remove-selection" type="button" data-remove-session="${escapeHtml(id)}" aria-label="Quitar ${escapeHtml(session.title)}">Quitar</button></div>`;
+      }).join("") : `<span class="field-hint">Aún no has agregado sesiones. Puedes elegirlas desde la oferta académica.</span>`;
+    }
+
+    function hasScheduleConflict(sessionId) {
+      const sessions = sessionById();
+      const candidate = sessions.get(sessionId);
+      if (!candidate?.date || !candidate.block) return false;
+      return [...state.selected].some((id) => {
+        const selected = sessions.get(id);
+        return selected && selected.date === candidate.date && selected.block === candidate.block;
+      });
+    }
+
+    function renderFaqs() {
+      $("#faqList").innerHTML = state.catalog.faqs.map((faq) => `<details><summary>${escapeHtml(faq.question)}</summary><p>${escapeHtml(faq.answer)}</p></details>`).join("");
+    }
+
+    function loadLiveStats() {
+      if (!API_URL || API_URL.includes("PEGA_AQUI")) {
+        $("#connectionState").textContent = "Conexión pendiente de configurar";
+        return;
+      }
+      const callback = `jornadaStats_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
+      const script = document.createElement("script");
+      const timeout = window.setTimeout(() => {
+        delete window[callback];
+        script.remove();
+        $("#connectionState").textContent = "No fue posible consultar el contador";
+      }, 12000);
+      window[callback] = (result) => {
+        window.clearTimeout(timeout);
+        delete window[callback];
+        script.remove();
+        if (!result || !result.ok) {
+          $("#connectionState").textContent = "Contador no disponible";
+          return;
+        }
+        state.stats = result;
+        $("#registeredCount").textContent = Number(result.totalInscritos || 0).toLocaleString("es-MX");
+        $("#connectionState").textContent = "Actualizado en vivo";
+        $("#connectionState").classList.add("is-live");
+        renderAgenda();
+        renderCourses();
+      };
+      script.onerror = () => {
+        window.clearTimeout(timeout);
+        delete window[callback];
+        $("#connectionState").textContent = "No fue posible consultar el contador";
+      };
+      script.src = `${API_URL}?action=stats&callback=${callback}&t=${Date.now()}`;
+      document.body.appendChild(script);
+    }
+
+    function setFormStatus(message, kind = "") {
+      const status = $("#formStatus");
+      status.textContent = message;
+      status.className = `form-status ${kind}`;
+    }
+
+    function submitRegistration(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+      if (!API_URL || API_URL.includes("PEGA_AQUI")) {
+        setFormStatus("El formulario aún no está conectado. La coordinación debe completar la configuración de Apps Script indicada en README.md.", "error");
+        return;
+      }
+      if (state.selected.size < MIN_COURSES) {
+        setFormStatus(`Selecciona al menos ${MIN_COURSES} sesiones antes de confirmar.`, "error");
+        return;
+      }
+      const payload = {
+        requestId: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+        fullName: $("#fullName").value.trim(),
+        email: $("#email").value.trim(),
+        teacherKey: $("#teacherKey").value.trim(),
+        campus: $("#campus").value,
+        division: $("#division").value,
+        personType: $("#personType").value,
+        academicLevel: $("#academicLevel").value || "No aplica",
+        postgraduateLevel: $("#postgraduateLevel").value || "No aplica",
+        programs: [...$("#programs").selectedOptions].map((option) => option.value),
+        experience: $("#experience").value,
+        sessions: [...state.selected],
+        website: $("#website").value,
+        privacyConsent: $("#privacyConsent").checked
+      };
+      const formNode = $("#apiForm");
+      const payloadInput = document.createElement("input");
+      payloadInput.type = "hidden";
+      payloadInput.name = "payload";
+      payloadInput.value = JSON.stringify(payload);
+      formNode.replaceChildren(payloadInput);
+      formNode.action = API_URL;
+      $("#submitButton").disabled = true;
+      setFormStatus("Enviando tu inscripción de forma segura…", "pending");
+      window.registrationTimeout = window.setTimeout(() => {
+        $("#submitButton").disabled = false;
+        setFormStatus("No recibimos confirmación del servidor. Revisa tu conexión y el estado del registro antes de volver a enviarlo.", "error");
+      }, 30000);
+      formNode.submit();
+    }
+
+    window.addEventListener("message", (event) => {
+      const host = (() => { try { return new URL(event.origin).hostname; } catch { return ""; } })();
+      if (!(host === "script.google.com" || host.endsWith(".googleusercontent.com"))) return;
+      const result = event.data;
+      if (!result || result.type !== "uvp-registration-result" || !result.requestId) return;
+      window.clearTimeout(window.registrationTimeout);
+      $("#submitButton").disabled = false;
+      if (result.ok) {
+        setFormStatus(result.message || "Tu inscripción quedó registrada. Revisa tu correo.", "success");
+        state.selected.clear();
+        updateSelection();
+        renderCourses();
+        loadLiveStats();
+      } else {
+        setFormStatus(result.message || "No fue posible guardar la inscripción. Revisa tus datos e inténtalo de nuevo.", "error");
+      }
+    });
+
+    $("#menuToggle").addEventListener("click", () => {
+      const expanded = $("#menuToggle").getAttribute("aria-expanded") === "true";
+      $("#menuToggle").setAttribute("aria-expanded", String(!expanded));
+      $("#navLinks").classList.toggle("is-open", !expanded);
+    });
+    $("#navLinks").addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        $("#navLinks").classList.remove("is-open");
+        $("#menuToggle").setAttribute("aria-expanded", "false");
+      }
+    });
+    $("#scheduleDate").addEventListener("change", renderAgenda);
+    $("#courseSearch").addEventListener("input", () => { state.visibleCourses = 9; renderCourses(); });
+    $("#axisFilter").addEventListener("change", () => { state.visibleCourses = 9; renderCourses(); });
+    $("#modeFilter").addEventListener("change", () => { state.visibleCourses = 9; renderCourses(); });
+    $("#loadMore").addEventListener("click", () => { state.visibleCourses += 9; renderCourses(); });
+    $("#personType").addEventListener("change", updatePrograms);
+    $("#academicLevel").addEventListener("change", updatePrograms);
+    $("#postgraduateLevel").addEventListener("change", updatePrograms);
+    $("#registrationForm").addEventListener("submit", submitRegistration);
+    $("#courseGrid").addEventListener("change", (event) => {
+      const checkbox = event.target.closest("input[data-session]");
+      if (!checkbox) return;
+      const id = checkbox.dataset.session;
+      if (checkbox.checked && hasScheduleConflict(id)) {
+        checkbox.checked = false;
+        showToast("Ese horario coincide con otra sesión que ya elegiste.");
+        return;
+      }
+      if (checkbox.checked) state.selected.add(id);
+      else state.selected.delete(id);
+      updateSelection();
+      renderCourses();
+    });
+    $("#selectedList").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-remove-session]");
+      if (!button) return;
+      state.selected.delete(button.dataset.removeSession);
+      updateSelection();
+      renderCourses();
+    });
+
+    fetch("./catalog.json")
+      .then((response) => {
+        if (!response.ok) throw new Error(`No se pudo cargar el catálogo (${response.status}).`);
+        return response.json();
+      })
+      .then((catalog) => {
+        state.catalog = catalog;
+        initializePage();
+      })
+      .catch((error) => {
+        console.error(error);
+        $("#courseGrid").innerHTML = `<div class="empty-note">No se pudo cargar el catálogo. Verifica que catalog.json esté publicado junto con index.html.</div>`;
+        $("#scheduleContent").innerHTML = `<div class="empty-note">La agenda no está disponible en este momento.</div>`;
+      });
+  </script>
+</body>
+</html>
